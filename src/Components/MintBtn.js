@@ -16,12 +16,12 @@ export default function Mintbtn() {
   const SELECTEDNETWORKNAME = "Ethereum";
 
   const [quantity, setQuantity] = useState(1);
-  const [status, setStatus] = useState(0);
   const [mintdone, setMintdone] = useState(false);
   const [price, setPrice] = useState("X");
   const [total, setTotal] = useState(0);
   const [collection, setCollection] = useState([]);
-  const [metamaskAddress, setMetamaskAddress] = useState("");
+  const [wallet, setWallet] = useState("Connect");
+
   let ct, web3;
 
   const loadweb3 = async () => {
@@ -31,7 +31,6 @@ export default function Mintbtn() {
     await window.ethereum.enable();
     let m = await web3.eth.getAccounts();
     m = m[0];
-    setMetamaskAddress(m);
 
     if ((await web3.eth.net.getId()) != SELECTEDNETWORK) {
       toast.error('Enable "' + SELECTEDNETWORKNAME + '" network!');
@@ -40,9 +39,7 @@ export default function Mintbtn() {
 
     ct = new web3.eth.Contract(abi, REACT_APP_CONTRACT_ADDRESS);
 
-    let p = await ct.methods.PRICE().call();
-
-    setPrice(p);
+    let p = (await ct.methods.PRICE().call()) * quantity;
 
     if ((await web3.eth.getBalance(m)) < p) {
       toast.error("Insufficient Eth Balance!");
@@ -88,7 +85,6 @@ export default function Mintbtn() {
       await window.ethereum.enable();
       let m = await web3.eth.getAccounts();
       m = m[0];
-      setMetamaskAddress(m);
 
       if ((await web3.eth.net.getId()) != SELECTEDNETWORK) {
         toast.error('Enable "' + SELECTEDNETWORKNAME + '" network!');
@@ -101,7 +97,6 @@ export default function Mintbtn() {
       let t = await ct.methods.totalSupply().call();
       let p = await ct.methods.PRICE().call();
 
-      setStatus(s);
       setPrice(p);
       setTotal(t);
 
@@ -130,8 +125,77 @@ export default function Mintbtn() {
     setCollection(arr);
   };
 
+  const connectwallet = async () => {
+    window.web3 = new Web3(window.ethereum);
+    web3 = window.web3;
+    await window.ethereum.enable();
+    let m = await web3.eth.getAccounts();
+    m = m[0];
+
+    setWallet(
+      m.substring(0, 10) + "...." + m.substring(m.length - 10, m.length)
+    );
+  };
+
   return (
     <>
+      <div className="container-fluid sec1">
+        <div className="row pt-3">
+          <div className="col-1"></div>
+          <div className="col-10">
+            <nav className="navbar navbar-expand-lg navbar-light">
+              <div className="container-fluid">
+                <a className="navbar-brand" href="/">
+                  <img className="logo" src="./imgs/logo.png" />{" "}
+                </a>
+                <button
+                  className="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span className="navbar-toggler-icon"></span>
+                </button>
+                <div
+                  className="collapse navbar-collapse"
+                  id="navbarSupportedContent"
+                >
+                  <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
+                    <li className="nav-item px-2 pt-1">
+                      <a className="nav-link " aria-current="page" href="#mi">
+                        Mint Now
+                      </a>
+                    </li>
+                    <li className="nav-item px-2 pt-1">
+                      <a className="nav-link" href="#coll">
+                        Collection
+                      </a>
+                    </li>
+                  </ul>
+                  <button className="btn-nav" onClick={() => connectwallet()}>
+                    {wallet}
+                  </button>
+                </div>
+              </div>
+            </nav>
+          </div>
+          <div className="col-1"></div>
+        </div>
+      </div>
+      <hr className="line1" />
+      <div className="container-fluid sec1">
+        <div className="container">
+          <div className="row pt-4">
+            <div className="col-md-12 text-center">
+              <p className="heading">Sekuya Kingdom x Inspiring Creators</p>
+              <h1 className="heading1">10.000 Rare NFT</h1>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="container-fluid collection">
         <div className="container">
           <div className="row AAA mt-5">

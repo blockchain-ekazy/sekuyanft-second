@@ -295,19 +295,19 @@ export default function Home() {
         <div className="row pt-5 mint">
           <div className="col-md-3 text-center gap">
             <h1 className="heading4">0.1 BNB</h1>
-            <p className="bullet1">999 NFTs</p>
+            <p className="bullet1">1 - 600 NFTs</p>
           </div>
           <div className="col-md-3 text-center gap">
             <h1 className="heading4">0.2 BNB</h1>
-            <p className="bullet1">1000 - 1999 NFTs</p>
+            <p className="bullet1">601 -1000 NFTs</p>
           </div>
           <div className="col-md-3 text-center gap">
             <h1 className="heading4">0.3 BNB</h1>
-            <p className="bullet1">2000 - 6999 NFTs</p>
+            <p className="bullet1">1001 - 2000 NFTs</p>
           </div>
           <div className="col-md-3 text-center gap">
             <h1 className="heading4">0.4 BNB</h1>
-            <p className="bullet1">7000 - 10.000 NFTs</p>
+            <p className="bullet1">2000 - 5000 NFTs</p>
           </div>
         </div>
       </div>
