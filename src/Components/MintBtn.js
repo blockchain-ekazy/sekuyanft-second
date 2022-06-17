@@ -17,6 +17,7 @@ export default function Mintbtn() {
 
   const [quantity, setQuantity] = useState(1);
   const [status, setStatus] = useState(0);
+  const [mintdone, setMintdone] = useState(false);
   const [price, setPrice] = useState("X");
   const [total, setTotal] = useState(0);
   const [collection, setCollection] = useState([]);
@@ -24,7 +25,10 @@ export default function Mintbtn() {
   let ct, web3;
 
   const loadweb3 = async () => {
-    if (!initializeWeb3()) return;
+    // if (!initializeWeb3()) return;
+
+    window.web3 = new Web3(window.ethereum);
+    web3 = window.web3;
 
     let p = price * quantity;
     if ((await web3.eth.getBalance(metamaskAddress)) < p) {
@@ -34,7 +38,7 @@ export default function Mintbtn() {
 
     let ct_skuy = new web3.eth.Contract(
       abi_skuy,
-      web3.utils.toChecksumAddress("0x2f47898684492e3018c6f4e557d5fbb84ed20c96")
+      REACT_APP_CONTRACT_ADDRESS_skuy
     );
 
     try {
@@ -57,32 +61,45 @@ export default function Mintbtn() {
           error: "Mint Rejected!!",
         }
       );
+      setMintdone(true);
     } catch (err) {}
   };
 
-  async function checkNetwork() {
-    if ((await web3.eth.net.getId()) == SELECTEDNETWORK) return true;
-    toast.error('Enable "' + SELECTEDNETWORKNAME + '" network!');
-    return false;
-  }
-
   useEffect(() => {
     initializeWeb3();
-    loadcollection();
   }, []);
 
   const initializeWeb3 = async () => {
-    if (!connectWallet()) return false;
     if (await detectEthereumProvider()) {
       window.web3 = new Web3(window.ethereum);
       web3 = window.web3;
 
-      if (!checkNetwork()) return false;
+      await window.ethereum.enable();
+      let m = await web3.eth.getAccounts();
+      m = m[0];
+      setMetamaskAddress(m);
+
+      if ((await web3.eth.net.getId()) != SELECTEDNETWORK) {
+        toast.error('Enable "' + SELECTEDNETWORKNAME + '" network!');
+        return false;
+      }
 
       ct = new web3.eth.Contract(abi, REACT_APP_CONTRACT_ADDRESS);
-      setStatus(await ct.methods.status().call());
-      setPrice(await ct.methods.PRICE().call());
-      setTotal(await ct.methods.totalSupply().call());
+
+      let s = await ct.methods.status().call();
+      let t = await ct.methods.totalSupply().call();
+      let p = await ct.methods.PRICE().call();
+
+      setStatus(s);
+      setPrice(p);
+      setTotal(t);
+
+      loadcollection(t, m);
+
+      if (s == 0) {
+        toast.error("Sale not Started!");
+        return false;
+      }
       return true;
     } else {
       toast.error(
@@ -92,33 +109,41 @@ export default function Mintbtn() {
     }
   };
 
-  const connectWallet = async () => {
-    await window.ethereum.enable();
-    let m = await web3.eth.getAccounts();
-    m = m[0];
-    setMetamaskAddress(m);
-
-    if (status == 0) {
-      toast.error("Sale not Started!");
-    } else if (status == 3) {
-      // setWalletConnected(true);
-    }
-  };
-
-  const loadcollection = async () => {
-    await initializeWeb3();
+  const loadcollection = async (t, m) => {
     let arr = [];
-    for (let i = 1; i <= total; i++) {
-      if ((await ct.methods.ownerOf(i).call()) == metamaskAddress) {
+    for (let i = 1; i <= t; i++) {
+      if ((await ct.methods.ownerOf(i).call()) == m) {
         arr.push(i);
       }
     }
-    console.log(arr);
     setCollection(arr);
   };
 
   return (
     <>
+      <div className="container-fluid collection">
+        <div className="container">
+          <div className="row AAA mt-5">
+            <div className="col-3"></div>
+            {mintdone ? (
+              <div className="col-md-6 text-center shad ">
+                <h2 className="rare">
+                  CONGRATULATIONS!
+                  <br />
+                  You got {quantity} Rare NFT!
+                </h2>
+                <div className="awesome pt-3">
+                  <button className="awe">Awesome!</button>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
+            <div className="col-3"></div>
+          </div>
+        </div>
+      </div>
+      <a id="mi"></a>
       <div className="row BBB">
         <div className="col-md-12 p-0">
           <h2 className="rare1">{total}/10.000 MINTED</h2>

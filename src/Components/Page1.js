@@ -47,13 +47,13 @@ export default function Page1() {
         <div className="row pt-3">
           <div className="col-1"></div>
           <div className="col-10">
-            <nav class="navbar navbar-expand-lg navbar-light">
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+            <nav className="navbar navbar-expand-lg navbar-light">
+              <div className="container-fluid">
+                <a className="navbar-brand" href="/">
                   <img className="logo" src="./imgs/logo.png" />{" "}
                 </a>
                 <button
-                  class="navbar-toggler"
+                  className="navbar-toggler"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#navbarSupportedContent"
@@ -61,20 +61,20 @@ export default function Page1() {
                   aria-expanded="false"
                   aria-label="Toggle navigation"
                 >
-                  <span class="navbar-toggler-icon"></span>
+                  <span className="navbar-toggler-icon"></span>
                 </button>
                 <div
-                  class="collapse navbar-collapse"
+                  className="collapse navbar-collapse"
                   id="navbarSupportedContent"
                 >
-                  <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item px-2 pt-1">
-                      <a class="nav-link " aria-current="page" href="#mi">
+                  <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li className="nav-item px-2 pt-1">
+                      <a className="nav-link " aria-current="page" href="#mi">
                         Mint Now
                       </a>
                     </li>
-                    <li class="nav-item px-2 pt-1">
-                      <a class="nav-link" href="#coll">
+                    <li className="nav-item px-2 pt-1">
+                      <a className="nav-link" href="#coll">
                         Collection
                       </a>
                     </li>
@@ -99,7 +99,7 @@ export default function Page1() {
           </div>
         </div>
       </div>
-      <div className="container-fluid collection">
+      {/* <div className="container-fluid collection">
         <div className="container">
           <div className="row AAA mt-5">
             <div className="col-3"></div>
@@ -117,7 +117,7 @@ export default function Page1() {
           </div>
         </div>
       </div>
-      <a id="mi"></a>
+      <a id="mi"></a> */}
       <div className="container-fluid sec1">
         <Mintbtn />
       </div>

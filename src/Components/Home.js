@@ -15,7 +15,7 @@ import Img16 from "../Images/7.png";
 import Img17 from "../Images/8.png";
 import Img18 from "../Images/9.png";
 import Img19 from "../Images/10.png";
-import Img21 from "../Images/Artboard 18.png";
+import Img21 from "../Images/Artboard 18.svg";
 import Img22 from "../Images/Artboard 19.png";
 import Img23 from "../Images/Artboard 20.png";
 
@@ -88,13 +88,13 @@ export default function Home() {
         <div className="row pt-3">
           <div className="col-1"></div>
           <div className="col-10">
-            <nav class="navbar navbar-expand-lg navbar-light">
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+            <nav className="navbar navbar-expand-lg navbar-light">
+              <div className="container-fluid">
+                <a className="navbar-brand" href="#">
                   <img className="logo" src="./imgs/logo.png" />
                 </a>
                 <button
-                  class="navbar-toggler"
+                  className="navbar-toggler"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#navbarSupportedContent"
@@ -102,32 +102,32 @@ export default function Home() {
                   aria-expanded="false"
                   aria-label="Toggle navigation"
                 >
-                  <span class="navbar-toggler-icon"></span>
+                  <span className="navbar-toggler-icon"></span>
                 </button>
                 <div
-                  class="collapse navbar-collapse"
+                  className="collapse navbar-collapse"
                   id="navbarSupportedContent"
                 >
-                  <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item px-2 pt-1">
-                      <a class="nav-link " aria-current="page" href="#st">
+                  <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li className="nav-item px-2 pt-1">
+                      <a className="nav-link " aria-current="page" href="#st">
                         Story
                       </a>
                     </li>
-                    <li class="nav-item px-2 pt-1">
-                      <a class="nav-link" href="#cr">
+                    <li className="nav-item px-2 pt-1">
+                      <a className="nav-link" href="#cr">
                         Creator
                       </a>
                     </li>
-                    <li class="nav-item px-2 pt-1">
-                      <a class="nav-link" href="/mint">
+                    <li className="nav-item px-2 pt-1">
+                      <a className="nav-link" href="/mint">
                         Mint
                       </a>
                     </li>
 
-                    <li class="nav-item px-2">
+                    <li className="nav-item px-2">
                       <a
-                        class="nav-link "
+                        className="nav-link "
                         href="#"
                         tabindex="-1"
                         aria-disabled="true"
@@ -139,8 +139,8 @@ export default function Home() {
                     </li>
                   </ul>
                   <img className="social px-2" src={Img21} />
-                  <img className="social px-2" src={Img22} />
-                  <img className="social px-2" src={Img23} />
+                  <i className="fa-brands fa-twitter mx-1 p-2"></i>
+                  <i className="fa-brands fa-telegram mx-1 p-2"></i>
                 </div>
               </div>
             </nav>
@@ -343,11 +343,12 @@ export default function Home() {
         <div className="row story">
           <div className="col-md-12 text-center">
             <h1 className="heading3">Meet Inspiring Creators</h1>
+            <h3 className="heading6">Coming soon, Phase 2</h3>
           </div>
         </div>
-        <div className="row pt-5">
+        {/* <div className="row pt-5">
           <div className="col-md-1 p-0 m-0 "></div>
-          <div className="col-md-2 col-sm-3 member text-left p-0 m-0">
+          <div className="col-md-2 col-sm-4 member text-left p-0 m-0">
             <img className="w-100" src={Img11} />
             <h3 className="name">
               Your
@@ -361,7 +362,7 @@ export default function Home() {
               diam
             </p>
           </div>
-          <div className="col-md-2 col-sm-3 member2 text-left p-0 m-0">
+          <div className="col-md-2 col-sm-4 member2 text-left p-0 m-0">
             <img className="w-100" src={Img12} />
             <h3 className="name">
               Your
@@ -375,7 +376,7 @@ export default function Home() {
               diam
             </p>
           </div>
-          <div className="col-md-2 col-sm-3 text-left member p-0 m-0">
+          <div className="col-md-2 col-sm-4 text-left member p-0 m-0">
             <img className="w-100" src={Img13} />
             <h3 className="name">
               Your
@@ -389,7 +390,7 @@ export default function Home() {
               diam
             </p>
           </div>
-          <div className="col-md-2 col-sm-3 text-left member2 p-0 m-0">
+          <div className="col-md-2 col-sm-6 text-left member2 p-0 m-0">
             {" "}
             <img className="w-100 size" src={Img10} />
             <h3 className="name">
@@ -404,7 +405,7 @@ export default function Home() {
               diam
             </p>
           </div>
-          <div className="col-md-2 col-sm-3 member text-left p-0 m-0 ">
+          <div className="col-md-2 col-sm-6 member text-left p-0 m-0 ">
             {" "}
             <img className="w-100" src={Img14} />
             <h3 className="name">
@@ -423,7 +424,7 @@ export default function Home() {
         </div>
         <div className="row pt-5">
           <div className="col-md-1 p-0 m-0 "></div>
-          <div className="col-md-2 member col-sm-3 text-left p-0 m-0 ">
+          <div className="col-md-2 col-sm-4 member col-sm-3 text-left p-0 m-0 ">
             <img className="w-100" src={Img15} />
             <h3 className="name">
               Your
@@ -437,7 +438,7 @@ export default function Home() {
               diam
             </p>
           </div>
-          <div className="col-md-2 member2 col-sm-3 text-left p-0 m-0">
+          <div className="col-md-2 col-sm-4 member2 col-sm-3 text-left p-0 m-0">
             <img className="w-100" src={Img16} />
             <h3 className="name">
               Your
@@ -451,7 +452,7 @@ export default function Home() {
               diam
             </p>
           </div>
-          <div className="col-md-2 text-left col-sm-3 member p-0 m-0 ">
+          <div className="col-md-2 col-sm-4 text-left col-sm-3 member p-0 m-0 ">
             <img className="w-100" src={Img17} />
             <h3 className="name">
               Your
@@ -465,7 +466,7 @@ export default function Home() {
               diam
             </p>
           </div>
-          <div className="col-md-2 text-left col-sm-3 member2 p-0 m-0 ">
+          <div className="col-md-2 col-sm-6 text-left col-sm-3 member2 p-0 m-0 ">
             {" "}
             <img className="w-100 size" src={Img18} />
             <h3 className="name">
@@ -480,7 +481,7 @@ export default function Home() {
               diam
             </p>
           </div>
-          <div className="col-md-2 member col-sm-3 text-left p-0 m-0">
+          <div className="col-md-2 col-sm-6 member col-sm-3 text-left p-0 m-0">
             {" "}
             <img className="w-100" src={Img19} />
             <h3 className="name">
@@ -496,7 +497,8 @@ export default function Home() {
             </p>
           </div>
           <div className="col-md-1 p-0 m-0"></div>
-        </div>
+        </div> */}
+
         <div className="container">
           <div className="row story">
             <div className="col-md-12 text-center">
@@ -512,6 +514,32 @@ export default function Home() {
               <p className="text-white story">© 2022 Sekuya Multiverse</p>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="container-fluid pt-5">
+        <div className="row">
+          <a
+            href="https://nft.sekuya.io/ultrarare"
+            target="_blank"
+            className="col-sm-6"
+            style={{ background: "#e2b830" }}
+          >
+            <img src="./imgs/left.png" className="p-5" />
+            <h3 className="name">
+              100 3D NFT <br /> LEGENDS OF SEKUYA
+            </h3>
+          </a>
+          <a
+            className="col-sm-6"
+            href="https://nft.sekuya.io/rare"
+            target="_blank"
+          >
+            <img src="./imgs/right.png" className="p-5" />
+            <h3 className="name">
+              10.000 3D NFT <br />
+              SEKUYA KINGDOM
+            </h3>
+          </a>
         </div>
       </div>
     </div>

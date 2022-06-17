@@ -336,7 +336,21 @@ html {
   width: 38px;
   max-width: 100%;
   display: block;
+  cursor: pointer;
 }
 button {
   cursor: pointer;
+}
+.fa-twitter,
+.fa-telegram {
+  background-color: #00acee;
+  font-size: 21px;
+  border-radius: 100px;
+  color: white;
+}
+.fa-telegram {
+  background-color: #36aee2;
+}
+a {
+  text-decoration: none !important;
 }
