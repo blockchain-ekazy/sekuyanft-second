@@ -25,13 +25,26 @@ export default function Mintbtn() {
   let ct, web3;
 
   const loadweb3 = async () => {
-    // if (!initializeWeb3()) return;
-
     window.web3 = new Web3(window.ethereum);
     web3 = window.web3;
 
-    let p = price * quantity;
-    if ((await web3.eth.getBalance(metamaskAddress)) < p) {
+    await window.ethereum.enable();
+    let m = await web3.eth.getAccounts();
+    m = m[0];
+    setMetamaskAddress(m);
+
+    if ((await web3.eth.net.getId()) != SELECTEDNETWORK) {
+      toast.error('Enable "' + SELECTEDNETWORKNAME + '" network!');
+      return false;
+    }
+
+    ct = new web3.eth.Contract(abi, REACT_APP_CONTRACT_ADDRESS);
+
+    let p = await ct.methods.PRICE().call();
+
+    setPrice(p);
+
+    if ((await web3.eth.getBalance(m)) < p) {
       toast.error("Insufficient Eth Balance!");
       return;
     }
@@ -45,15 +58,13 @@ export default function Mintbtn() {
       await toast.promise(
         async () => {
           if (
-            (await ct_skuy.methods.balanceOf(metamaskAddress).call()) <
+            (await ct_skuy.methods.balanceOf(m).call()) <
             (await ct.methods.SKUY().call())
           ) {
             toast.error("Insufficient Skuy Balance!");
             return;
           }
-          await ct.methods
-            .mint(quantity)
-            .send({ from: metamaskAddress, value: p });
+          await ct.methods.mint(quantity).send({ from: m, value: p });
         },
         {
           pending: "Mint in Progress!!",
