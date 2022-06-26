@@ -9,11 +9,11 @@ import "./Home.css";
 
 export default function Mintbtn() {
   const REACT_APP_CONTRACT_ADDRESS =
-    "0xA8b4d84A937980b2966688756BebeB733649b68B";
+    "0x459A2Fb7f093D00DE8aE131101CF136819Fa9ae7";
   const REACT_APP_CONTRACT_ADDRESS_skuy =
-    "0x2f47898684492e3018C6f4E557d5FBb84ED20c96";
-  const SELECTEDNETWORK = "4";
-  const SELECTEDNETWORKNAME = "Ethereum";
+    "0xe327ce757cd206721e100812e744fc56e4e0a969";
+  const SELECTEDNETWORK = "56";
+  const SELECTEDNETWORKNAME = "Binance";
 
   const [quantity, setQuantity] = useState(1);
   const [mintdone, setMintdone] = useState(false);
@@ -31,18 +31,17 @@ export default function Mintbtn() {
     await window.ethereum.enable();
     let m = await web3.eth.getAccounts();
     m = m[0];
+    ct = new web3.eth.Contract(abi, REACT_APP_CONTRACT_ADDRESS);
 
     if ((await web3.eth.net.getId()) != SELECTEDNETWORK) {
       toast.error('Enable "' + SELECTEDNETWORKNAME + '" network!');
       return false;
     }
 
-    ct = new web3.eth.Contract(abi, REACT_APP_CONTRACT_ADDRESS);
-
     let p = (await ct.methods.PRICE().call()) * quantity;
 
     if ((await web3.eth.getBalance(m)) < p) {
-      toast.error("Insufficient Eth Balance!");
+      toast.error("Insufficient BNB Balance!");
       return;
     }
 
@@ -116,6 +115,7 @@ export default function Mintbtn() {
   };
 
   const loadcollection = async (t, m) => {
+    console.log("alsdklk");
     let arr = [];
     for (let i = 1; i <= t; i++) {
       if ((await ct.methods.ownerOf(i).call()) == m) {
@@ -146,7 +146,10 @@ export default function Mintbtn() {
             <nav className="navbar navbar-expand-lg navbar-light">
               <div className="container-fluid">
                 <a className="navbar-brand" href="/">
-                  <img className="logo" src="./imgs/logo.png" />{" "}
+                  <img className="logo" src="./imgs/logo.png" />
+                  <span class="mx-2 w-100 text-white font-weight-bold">
+                    Sekuya NFT
+                  </span>
                 </a>
                 <button
                   className="navbar-toggler"
@@ -256,21 +259,48 @@ export default function Mintbtn() {
       <a id="coll"></a>
       <h1 className="heading1 my-4 py-4">My Collection</h1>
       <div className="row">
-        {collection.map((x, i) => {
-          return (
-            <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 py-3">
-              <a
-                href={
-                  "https://testnets.opensea.io/assets/rinkeby/0xa8b4d84a937980b2966688756bebeb733649b68b/" +
-                  x
-                }
-                target="_blank"
-              >
-                <img className="w-100" src={"./imgs/slider" + x + ".png"} />
-              </a>
-            </div>
-          );
-        })}
+        {collection.length > 0 ? (
+          collection.map((x, i) => {
+            return (
+              <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 py-3">
+                {/* <a
+                  href={
+                    "https://testnets.opensea.io/assets/rinkeby/0xa8b4d84a937980b2966688756bebeb733649b68b/" +
+                    x
+                  }
+                  target="_blank"
+                > */}
+                <img
+                  className="w-100"
+                  src={
+                    (x < 501
+                      ? "https://sekuya.mypinata.cloud/ipfs/QmeBh6MFKtCnXvt7qazzDwsmwQv2Gb4WTKoAjVeMArKmZv/"
+                      : x < 1001
+                      ? "https://sekuya.mypinata.cloud/ipfs/QmX1TfTEkVpwZB7KrTQ3PjTbHR99xwY18JxAbjApUvqEFc/"
+                      : x < 1501
+                      ? "https://sekuya.mypinata.cloud/ipfs/QmWyrzeT7HKFRGkKSjCm4afQD146a4dutB9UJswUZwjhj4/"
+                      : x < 2001
+                      ? "https://sekuya.mypinata.cloud/ipfs/QmQC5rCDsGnuzHfbxAvkdqJ9RkRqcHyeN4dBzoDpMevHFV/"
+                      : x < 3001
+                      ? "https://sekuya.mypinata.cloud/ipfs/QmeVGER9KxTYEvgM1oEAKyPJd5QFWpLt2mRjdU3hLdsyte/"
+                      : x < 4001
+                      ? "https://sekuya.mypinata.cloud/ipfs/QmYwbrMwsSebMB19RZTePg83JJspg3cxaqbQntKJ7iD53G/"
+                      : x < 4501
+                      ? "https://sekuya.mypinata.cloud/ipfs/QmaAa6m9LLwmSJn2eETVSKKe72ay8qQtyhLvqeCEujxDPq/"
+                      : "https://sekuya.mypinata.cloud/ipfs/QmWpadCyKKHW1d1ePo3hHxSt8L8YLJCgdCK9L3GU7CHJXL/") +
+                    x +
+                    ".png"
+                  }
+                />
+                {/* </a> */}
+              </div>
+            );
+          })
+        ) : (
+          <h3 className="text-center text-white mx-auto d-block">
+            Collection Loading
+          </h3>
+        )}
       </div>
     </>
   );

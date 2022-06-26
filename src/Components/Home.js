@@ -92,6 +92,9 @@ export default function Home() {
               <div className="container-fluid">
                 <a className="navbar-brand" href="#">
                   <img className="logo" src="./imgs/logo.png" />
+                  <span class="mx-2 w-100 text-white font-weight-bold">
+                    Sekuya NFT
+                  </span>
                 </a>
                 <button
                   className="navbar-toggler"
@@ -108,7 +111,7 @@ export default function Home() {
                   className="collapse navbar-collapse"
                   id="navbarSupportedContent"
                 >
-                  <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+                  <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
                     <li className="nav-item px-2 pt-1">
                       <a className="nav-link " aria-current="page" href="#st">
                         Story
@@ -120,7 +123,7 @@ export default function Home() {
                       </a>
                     </li>
                     <li className="nav-item px-2 pt-1">
-                      <a className="nav-link" href="/mint">
+                      <a className="nav-link" href="/rare/mint">
                         Mint
                       </a>
                     </li>
@@ -132,7 +135,7 @@ export default function Home() {
                         tabindex="-1"
                         aria-disabled="true"
                       >
-                        <a href="/mint">
+                        <a href="/rare/mint">
                           <button className="btn-nav">Connect</button>
                         </a>
                       </a>
@@ -226,7 +229,7 @@ export default function Home() {
         </div>
         <div className="row pt-5">
           <div className="col-md-12 text-center">
-            <a href="/mint">
+            <a href="/rare/mint">
               <button className="btn1">Connect</button>
             </a>
           </div>
@@ -516,7 +519,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="container-fluid pt-5">
+      {/* <div className="container-fluid pt-5">
         <div className="row">
           <a
             href="https://nft.sekuya.io/ultrarare"
@@ -541,7 +544,7 @@ export default function Home() {
             </h3>
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

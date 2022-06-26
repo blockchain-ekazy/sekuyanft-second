@@ -12,8 +12,8 @@ function App() {
     <div className="App">
       <BrowserRouter history={history}>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/mint" component={Page1} />
+          <Route exact path="/rare" component={Home} />
+          <Route exact path="/rare/mint" component={Page1} />
         </Switch>
       </BrowserRouter>
       <ToastContainer autoClose={4000} hideProgressBar theme="colored" />
