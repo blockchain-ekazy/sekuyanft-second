@@ -123,7 +123,7 @@ export default function Home() {
                       </a>
                     </li>
                     <li className="nav-item px-2 pt-1">
-                      <a className="nav-link" href="/rare/mint">
+                      <a className="nav-link" href="/mint">
                         Mint
                       </a>
                     </li>
@@ -135,7 +135,7 @@ export default function Home() {
                         tabindex="-1"
                         aria-disabled="true"
                       >
-                        <a href="/rare/mint">
+                        <a href="/mint">
                           <button className="btn-nav">Connect</button>
                         </a>
                       </a>
@@ -229,7 +229,7 @@ export default function Home() {
         </div>
         <div className="row pt-5">
           <div className="col-md-12 text-center">
-            <a href="/rare/mint">
+            <a href="/mint">
               <button className="btn1">Connect</button>
             </a>
           </div>
